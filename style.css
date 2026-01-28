@@ -1,0 +1,414 @@
+/* 1. ESTILOS GENERALES (Para toda la página) */
+body {
+    background-color: #f0f2f5; /* Un gris muy suave, profesional */
+    font-family: Arial, sans-serif; /* Cambiamos la letra a una más moderna */
+    text-align: center; /* Centramos todo el contenido */
+}
+
+/* 3. LOS INPUTS (Cajas de texto) */
+input {
+    padding: 10px; /* Relleno: hace la caja más gordita y cómoda */
+    margin: 5px;   /* Margen: los separa para que no se peguen */
+    border: 1px solid #ccc; /* Un borde gris suave */
+    border-radius: 5px; /* Bordes redondeados (más moderno) */
+    width: 200px; /* Que todos midan lo mismo de ancho */
+}
+
+/* 4. EL BOTÓN */
+button {
+    padding: 10px 20px; /* Más relleno para que parezca un botón real */
+    background-color: #2563eb; /* Fondo azul */
+    color: white; /* Letra blanca */
+    border: none; /* Sin borde negro feo */
+    border-radius: 5px; /* Redondeado */
+    cursor: pointer; /* Que salga la manito 👆 al pasar el mouse */
+}
+
+/* 5. LA TABLA (Para que no se vea apretada) */
+table {
+    margin: 20px auto; /* Separada de arriba y centrada automáticamente */
+    width: 80%; /* Que ocupe casi toda la pantalla */
+    border-collapse: collapse; /* Quita los espacios dobles entre celdas */
+    background-color: white; /* Fondo blanco para que resalte sobre el gris */
+}
+
+th, td {
+    padding: 10px; /* Aire dentro de las celdas */
+    border-bottom: 1px solid #ddd; /* Rayita abajo de cada fila */
+    text-align: center;
+}
+
+th {
+    background-color: #2c3e50;
+    color: white
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #e8f4ff; /* Un azul muy, muy clarito */
+    cursor: default; /* El mouse se queda normal, no cambia a texto */
+}
+
+/* 1. EL CONTENEDOR LARGO */
+.fila-venta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;               /* Espacio entre casillas */
+    max-width: 850px;        /* Un poco más ancho para que quepa todo */
+    margin: 0 auto 30px;     /* Centrado y separado de la tabla */
+}
+
+/* 2. EL ESTILO "AURA" PARA LOS INPUTS DE PRODUCTO */
+.fila-venta input {
+    padding: 12px 20px;
+    border: 1px solid transparent;
+    border-radius: 50px;     /* Píldora */
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Sombra suave */
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efecto Focus (cuando escribes) */
+.fila-venta input:focus {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    transform: translateY(-2px);
+}
+
+/* 3. TAMAÑOS INTELIGENTES (La clave del diseño PRO) */
+#producto-nombre { flex: 2; }  /* El nombre ocupa el DOBLE de espacio */
+#cantidad { flex: 0.5; }       /* La cantidad es pequeñita */
+#precio { flex: 1; }           /* El precio es tamaño normal */
+
+/* 4. EL BOTÓN AGREGAR (Transformación a Píldora Azul) */
+#btn-agregar {
+    padding: 12px 25px;      /* Más gordito */
+    border-radius: 50px;     /* Redondo */
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); /* Sombra azul brillante */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    white-space: nowrap;     /* Que el texto no se rompa */
+}
+
+#btn-agregar:hover {
+    transform: scale(1.05);  /* Efecto rebote */
+    background-color: #1d4ed8;
+}
+
+/* 5. MODO CELULAR (Todo vertical) */
+@media (max-width: 768px) {
+    .fila-venta {
+        flex-direction: column; /* Uno abajo del otro */
+        padding: 0 20px;
+    }
+    
+    /* En el celular, que todos ocupen el ancho completo */
+    .fila-venta input, 
+    #btn-agregar { 
+        width: 100%; 
+        flex: none; /* Olvidamos las proporciones de PC */
+    }
+}
+
+/* =========================================
+   ESTILOS DE IMPRESIÓN (MODO LIMPIO)
+   ========================================= */
+@media print {
+    
+    /* 1. ELIMINAR ENCABEZADOS DEL NAVEGADOR (La fecha y el título de arriba) */
+    @page {
+        margin: 0; /* Esto borra los textos automáticos de las esquinas */
+        size: auto;
+    }
+
+    /* 2. MARGEN DE SEGURIDAD (Para que el logo no salga pegado al borde del papel) */
+    body {
+        margin: 1.5cm !important; /* Dejamos 1.5cm de espacio blanco alrededor */
+        background-color: white !important;
+    }
+
+    /* 3. OCULTAR HERRAMIENTAS (Lo que ya tenías) */
+    .fila-venta, .btn-nueva, #btn-imprimir, 
+    th:last-child, td:last-child {
+        display: none !important;
+    }
+
+    /* 4. LIMPIEZA VISUAL DE INPUTS */
+    .contenedor-cliente input {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        font-weight: bold;
+        font-size: 1.1em;
+        width: auto !important;
+    }
+    
+    /* Píldora de fecha simple */
+    .info-superior {
+        box-shadow: none !important;
+        border: 1px solid #ddd;
+        padding: 5px 20px;
+    }
+
+    /* 5. TABLA PARA PAPEL */
+    table {
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+    }
+
+    th {
+        background-color: #eee !important;
+        color: black !important;
+        border-bottom: 1px solid #000;
+    }
+    
+    /* 6. LOGO */
+    #logo-principal {
+        width: 300px !important;
+        margin-top: 0;
+    }
+    
+    /* 7. PIE DE PÁGINA PERSONALIZADO */
+    body::after {
+        content: "Gracias por su preferencia - AURIGAX Sistemas";
+        display: block;
+        text-align: center;
+        margin-top: 50px;
+        font-size: 0.8em;
+        color: #666;
+        border-top: 1px dashed #999;
+        padding-top: 10px;
+    }
+}
+
+/* 1. REDONDEAMOS LA TABLA */
+table {
+    border-radius: 20px;       /* Esquinas redondeadas */
+    overflow: hidden;          /* IMPORTANTE: Para que la cabecera azul no se salga del borde redondo */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* La misma sombra suave de los inputs */
+    border: none;              /* Quitamos bordes viejos si quedan */
+}
+
+/* 2. AJUSTE DE LA CABECERA AZUL */
+thead th {
+    border: none;              /* Limpiamos líneas */
+}
+
+/* 3. RENOVAMOS EL FONDO DE LA CABECERA */
+th {
+    background-color: #1e293b; /* Un azul grisáceo más moderno (Slate) */
+    text-transform: uppercase; /* Letras en mayúscula */
+    letter-spacing: 1px;       /* Un poco separadas */
+    font-size: 0.85em;         /* Letra un poco más chica y elegante */
+}
+
+#logo-principal {
+    width: 350px !important;         /* Lo hacemos más ancho para que la letra resalte */
+    height: auto;
+    margin: 20px auto 5px; /* Más espacio arriba, menos abajo */
+    display: block;
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1)); /* Un toque de profundidad */
+    transition: transform 0.3s ease;
+}
+
+/* El texto "Sistema de facturacion" que está debajo del logo */
+#tagline {
+    font-size: 0.9em;
+    color: #64748b; /* Un gris azulado muy elegante */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: -5px; /* Lo acerca un poquito más al logo */
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Centrar todo lo que esté dentro del header */
+header {
+    margin-bottom: 30px;
+}
+
+#logo-principal:hover {
+    transform: scale(1.05); /* Se agranda sutilmente al pasar el mouse */
+}
+
+/* Estilo para el botón de borrar */
+.btn-borrar {
+    background-color: #e74c3c !important; /* Rojo pasión */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.btn-borrar:hover {
+    background-color: #c0392b !important; /* Rojo más oscuro */
+    transform: scale(1.1); /* Se agranda un poquito */
+}
+
+/* Clase para resaltar el total cuando hay productos */
+.total-verde {
+    color: #27ae60 !important; /* Un verde esmeralda profesional */
+    font-weight: bold;
+    font-size: 1.2em; /* Lo agrandamos un poquito */
+    transition: all 0.3s ease; /* Para que el cambio de color sea suave */
+}
+
+/* Botón Editar */
+.btn-editar {
+    background-color: #f39c12 !important; /* Naranja profesional */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 5px; /* Espacio con el botón borrar */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-editar:hover {
+    background-color: #e67e22 !important; /* Naranja más oscuro */
+    transform: scale(1.1);
+}
+
+#iva-detalle {
+    font-size: 0.9em;
+    color: #666; /* Un gris suave */
+    margin-top: -10px; /* Para que esté cerquita del total */
+    font-style: italic;
+}
+
+/* Contenedor de Fecha, Factura y Botón */
+.info-superior {
+    display: flex;
+    justify-content: center; /* Centra el grupo */
+    align-items: center;     /* Alinea verticalmente */
+    gap: 25px;               /* Espacio entre los elementos */
+    background-color: white; /* Un fondo blanco para resaltar */
+    padding: 10px 20px;
+    border-radius: 50px;     /* Bordes redondeados tipo "píldora" */
+    width: fit-content;      /* Que solo ocupe lo necesario */
+    margin: 5px auto 10px;  /* Centrado en la página */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Sombra suave */
+}
+
+.info-superior p {
+    margin: 0;               /* Quita espacios extra */
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/* Reducimos el margen del logo para ganar más espacio */
+#logo-principal {
+    width: 200px; 
+    margin: 10px auto 5px; /* Menos margen arriba */
+}
+
+.btn-nueva {
+    padding: 5px 15px !important; /* Botón más pequeño y fino */
+    font-size: 0.85em;
+    font-weight: bold; /* <--- AGREGAR ESTO */
+    letter-spacing: 0.5px; /* Un poquito de aire entre letras queda top */
+    
+    /* Aseguramos que tenga el mismo azul y borde redondo */
+    background-color: #2563eb; 
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
+}
+
+/* Y un pequeño efecto al pasar el mouse */
+.btn-nueva:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+/* Corrección para que en el celular no sea gigante */
+@media (max-width: 768px) {
+    #logo-principal {
+        width: 320px !important; /* Le ganamos al !important de arriba con otro !important */
+    }
+}
+
+/* 1. CONTENEDOR INTELIGENTE */
+.contenedor-cliente {
+    display: flex;             /* Activa el modo flexible */
+    justify-content: center;   /* Centrado, igual que tu barra de arriba */
+    gap: 15px;                 /* Espacio entre las cajas */
+    max-width: 700px;          /* Ancho máximo para que no se estiren demasiado */
+    margin: 0 auto 20px;       /* Centrado en la página */
+}
+
+/* 2. LAS PÍLDORAS (Inputs) */
+.contenedor-cliente input {
+    width: 100%;               /* Que intenten ocupar espacio parejo */
+    padding: 12px 20px;
+    border: 1px solid transparent; /* Sin borde feo */
+    border-radius: 50px;       /* <--- ¡LA CLAVE! Redondos como la barra superior */
+    background-color: white;   /* Fondo blanco puro */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Sombra suave flotante */
+    font-size: 1rem;
+    outline: none;             /* Adiós borde azul default */
+    transition: all 0.3s ease;
+}
+
+/* Efecto al escribir (se iluminan) */
+.contenedor-cliente input:focus {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Resplandor azul suave */
+    transform: translateY(-2px); /* Se levanta un poquito */
+}
+
+/* 3. CELULARES (Aquí cambiamos a vertical automáticamente) */
+@media (max-width: 768px) {
+    .contenedor-cliente {
+        flex-direction: column; /* En celular, uno abajo del otro */
+        padding: 0 20px;        /* Un poco de margen a los costados */
+    }
+}
+
+/* EL BOTÓN DE IMPRIMIR (Estilo AURIGAX Original) */
+#btn-imprimir {
+    display: block;            /* Para poder centrarlo */
+    margin: 20px auto 40px;    /* Centrado y separado del final */
+    padding: 15px 40px;        /* Grande y cómodo */
+    border-radius: 50px;       /* Forma de píldora */
+    border: none;
+    
+    /* DEGRADADO AZUL AURIGAX */
+    background: linear-gradient(135deg, #2563eb, #1e40af); 
+    
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    
+    /* RESPLANDOR AZUL */
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); 
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse (Levitación) */
+#btn-imprimir:hover {
+    transform: translateY(-3px) scale(1.05); 
+    background: linear-gradient(135deg, #3b82f6, #2563eb); /* Se pone un poco más brillante */
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5); 
+}
+
+/* Efecto al hacer click (Rebote) */
+#btn-imprimir:active {
+    transform: scale(0.95);
+}

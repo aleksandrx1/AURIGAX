@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sistema de Facturacion AURIGAX</title>
+        <link rel="icon" type="image/png" href="X.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+        <body> <header>
+    <img src="logo aurigax sin fondo.png" alt="2.png" id="logo-principal">
+    <p id="tagline">Sistema de facturacion</p>
+
+    <div class="info-superior">
+        <p>Fecha: <span id="fecha-hoy"></span></p>
+        <p>Factura N°: <span id="factura-actual"></span></p>
+        <button onclick="nuevaVenta()" class="btn-nueva">✨ Nueva Venta</button>
+    </div>
+</header>
+       <div class="contenedor-cliente">
+    <input type="text" id="cliente-nombre" placeholder="👤 Nombre del Cliente">
+    <input type="number" id="cliente-ruc" placeholder="📄 RUC / CI">
+</div>
+        <div class="fila-venta">
+    <input type="text" id="producto-nombre" placeholder="📦 Producto">
+    <input type="number" id="cantidad" placeholder="🔢 Cant.">
+    <input type="number" id="precio" placeholder="💲 Precio">
+    <button id="btn-agregar">Agregar</button>
+</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo-tabla"></tbody>
+        </table>
+        <h3>Total: <span id="total-pagar">0</span> Gs.</h3>
+        <p id="iva-detalle">Liquidación del IVA (10%): 0 Gs.</p>
+        <button onclick="window.print()" id="btn-imprimir">🖨️ Imprimir Factura</button>
+        <script src="script.js"></script>
+    </body>
+</html>
